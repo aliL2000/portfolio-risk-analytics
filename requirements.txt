@@ -1,0 +1,5 @@
+yfinance>=0.2.40
+pandas>=2.0
+psycopg2-binary>=2.9
+matplotlib>=3.8
+seaborn>=0.13
