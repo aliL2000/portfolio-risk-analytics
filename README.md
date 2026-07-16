@@ -1,5 +1,9 @@
 # Portfolio Risk & Anomaly Monitoring Pipeline
 
+![Daily Pipeline](https://github.com/aliL2000/portfolio-risk-analytics/actions/workflows/daily_pipeline.yml/badge.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Python](https://img.shields.io/badge/python-3.11-blue.svg)
+
 An automated pipeline that ingests daily price data for a fixed 20-stock S&P 500
 watchlist, computes risk-adjusted return metrics via SQL, and flags statistically
 anomalous trading days — built to answer the question a risk desk actually asks:
