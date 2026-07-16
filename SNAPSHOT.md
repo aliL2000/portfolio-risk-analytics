@@ -1,8 +1,8 @@
-# Daily Risk Snapshot — 2026-07-14
+# Daily Risk Snapshot — 2026-07-15
 
-**Best mover:** INTC (+4.50%)
-**Worst mover:** CSCO (-1.81%)
-**Top risk-adjusted performer (trailing window):** JNJ (Sharpe 2.66)
+**Best mover:** AAPL (+4.01%)
+**Worst mover:** CSCO (-4.54%)
+**Top risk-adjusted performer (trailing window):** JNJ (Sharpe 2.48)
 
 **No new anomaly flags today.**
 
