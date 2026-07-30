@@ -6,3 +6,5 @@ trade_date,symbol,event
 2026-07-23,GOOGL,newly_flagged
 2026-07-23,TSLA,newly_flagged
 2026-07-27,NVDA,newly_flagged
+2026-07-29,BAC,newly_flagged
+2026-07-29,JPM,newly_flagged
