@@ -13,3 +13,5 @@ trade_date,symbol,event
 2026-07-30,INTC,newly_flagged
 2026-07-30,META,newly_flagged
 2026-07-30,MSFT,newly_flagged
+2026-07-31,AAPL,newly_flagged
+2026-07-31,GOOGL,newly_flagged
