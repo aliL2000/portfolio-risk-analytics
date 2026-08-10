@@ -1,8 +1,8 @@
-# Daily Risk Snapshot — 2026-08-06
+# Daily Risk Snapshot — 2026-08-07
 
-**Best mover:** MSFT (+2.54%)
-**Worst mover:** UNH (-2.13%)
-**Top risk-adjusted performer (trailing window):** JNJ (Sharpe 2.5)
+**Best mover:** TSLA (+2.83%)
+**Worst mover:** V (-2.15%)
+**Top risk-adjusted performer (trailing window):** JNJ (Sharpe 2.53)
 
 **No new anomaly flags today.**
 
