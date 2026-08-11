@@ -17,3 +17,4 @@ trade_date,symbol,event
 2026-07-31,GOOGL,newly_flagged
 2026-08-04,CSCO,newly_flagged
 2026-08-04,INTC,newly_flagged
+2026-08-10,XOM,newly_flagged
