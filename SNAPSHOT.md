@@ -1,8 +1,8 @@
-# Daily Risk Snapshot — 2026-08-11
+# Daily Risk Snapshot — 2026-08-12
 
-**Best mover:** AMD (+1.01%)
-**Worst mover:** GOOGL (-3.84%)
-**Top risk-adjusted performer (trailing window):** JNJ (Sharpe 2.53)
+**Best mover:** INTC (+3.32%)
+**Worst mover:** META (-3.38%)
+**Top risk-adjusted performer (trailing window):** JNJ (Sharpe 2.54)
 
 **No new anomaly flags today.**
 
