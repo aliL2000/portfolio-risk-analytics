@@ -19,3 +19,5 @@ trade_date,symbol,event
 2026-08-04,INTC,newly_flagged
 2026-08-10,XOM,newly_flagged
 2026-08-13,CSCO,newly_flagged
+2026-08-18,ABBV,newly_flagged
+2026-08-18,JNJ,newly_flagged
