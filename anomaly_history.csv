@@ -21,3 +21,4 @@ trade_date,symbol,event
 2026-08-13,CSCO,newly_flagged
 2026-08-18,ABBV,newly_flagged
 2026-08-18,JNJ,newly_flagged
+2026-08-19,GE,newly_flagged
