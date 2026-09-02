@@ -1,8 +1,8 @@
-# Daily Risk Snapshot — 2026-08-31
+# Daily Risk Snapshot — 2026-09-01
 
-**Best mover:** TSLA (+5.51%)
-**Worst mover:** AMZN (-2.50%)
-**Top risk-adjusted performer (trailing window):** JNJ (Sharpe 2.49)
+**Best mover:** AAPL (+2.61%)
+**Worst mover:** TSLA (-3.22%)
+**Top risk-adjusted performer (trailing window):** JNJ (Sharpe 2.57)
 
 **No new anomaly flags today.**
 
