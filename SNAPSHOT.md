@@ -1,8 +1,8 @@
-# Daily Risk Snapshot — 2026-09-02
+# Daily Risk Snapshot — 2026-09-03
 
-**Best mover:** NVDA (+3.21%)
-**Worst mover:** COST (-1.22%)
-**Top risk-adjusted performer (trailing window):** JNJ (Sharpe 2.63)
+**Best mover:** TSLA (+5.42%)
+**Worst mover:** XOM (-1.18%)
+**Top risk-adjusted performer (trailing window):** JNJ (Sharpe 2.67)
 
 **No new anomaly flags today.**
 
