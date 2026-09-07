@@ -1,8 +1,8 @@
-# Daily Risk Snapshot — 2026-09-03
+# Daily Risk Snapshot — 2026-09-04
 
-**Best mover:** TSLA (+5.42%)
-**Worst mover:** XOM (-1.18%)
-**Top risk-adjusted performer (trailing window):** JNJ (Sharpe 2.67)
+**Best mover:** AMD (+4.69%)
+**Worst mover:** TSLA (-5.92%)
+**Top risk-adjusted performer (trailing window):** JNJ (Sharpe 2.61)
 
 **No new anomaly flags today.**
 
