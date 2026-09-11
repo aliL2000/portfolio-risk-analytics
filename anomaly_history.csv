@@ -29,3 +29,4 @@ trade_date,symbol,event
 2026-08-28,AMZN,newly_flagged
 2026-09-08,INTC,newly_flagged
 2026-09-09,META,newly_flagged
+2026-09-10,AAPL,newly_flagged
