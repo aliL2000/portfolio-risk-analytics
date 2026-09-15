@@ -31,3 +31,5 @@ trade_date,symbol,event
 2026-09-09,META,newly_flagged
 2026-09-10,AAPL,newly_flagged
 2026-09-11,CSCO,newly_flagged
+2026-09-14,BAC,newly_flagged
+2026-09-14,GOOGL,newly_flagged
