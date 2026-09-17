@@ -33,3 +33,4 @@ trade_date,symbol,event
 2026-09-11,CSCO,newly_flagged
 2026-09-14,BAC,newly_flagged
 2026-09-14,GOOGL,newly_flagged
+2026-09-16,XOM,newly_flagged
