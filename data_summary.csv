@@ -2,9 +2,9 @@ symbol,annualized_return_pct,annualized_vol_pct,sharpe,sortino,pct_anomalous
 AAPL,,,,,6.4
 XOM,,,,,5.4
 V,,,,,4.0
+UNH,,,,,4.4
 MSFT,,,,,6.4
 META,,,,,5.7
-UNH,,,,,4.4
 COST,,,,,5.7
 BAC,,,,,5.7
 NVDA,,,,,5.0
@@ -13,8 +13,8 @@ WMT,,,,,4.7
 INTC,,,,,6.4
 GOOGL,,,,,5.4
 CSCO,,,,,6.4
-AMD,,,,,5.4
 JPM,,,,,5.0
+AMD,,,,,5.4
 GE,,,,,4.4
 JNJ,,,,,5.4
 AMZN,,,,,5.4
