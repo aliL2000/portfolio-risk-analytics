@@ -1,7 +1,7 @@
-# Daily Risk Snapshot — 2026-09-23
+# Daily Risk Snapshot — 2026-09-25
 
-**Best mover:** XOM (+nan%)
-**Worst mover:** GOOGL (-3.80%)
+**Best mover:** AAPL (+nan%)
+**Worst mover:** XOM (+nan%)
 **Top risk-adjusted performer (trailing window):** AAPL (Sharpe nan)
 
 **No new anomaly flags today.**
