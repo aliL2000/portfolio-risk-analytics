@@ -1,4 +1,4 @@
-# Daily Risk Snapshot — 2026-09-25
+# Daily Risk Snapshot — 2026-09-28
 
 **Best mover:** AAPL (+nan%)
 **Worst mover:** XOM (+nan%)
