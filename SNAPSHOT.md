@@ -1,7 +1,7 @@
-# Daily Risk Snapshot — 2026-09-29
+# Daily Risk Snapshot — 2026-09-30
 
-**Best mover:** META (+3.24%)
-**Worst mover:** AAPL (-2.66%)
+**Best mover:** INTC (+3.71%)
+**Worst mover:** WMT (-2.70%)
 **Top risk-adjusted performer (trailing window):** AAPL (Sharpe nan)
 
 **No new anomaly flags today.**
