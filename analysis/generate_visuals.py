@@ -4,8 +4,8 @@ Generates the two visuals that require raw daily price/return series
 
 Usage:
     export DATABASE_URL="postgresql://..."
-    pip install psycopg2-binary pandas matplotlib seaborn
-    python generate_visuals.py
+    pip install -r requirements.txt
+    python analysis/generate_visuals.py   # after sql/metrics.sql has run
 """
 
 import os
@@ -19,7 +19,14 @@ DATABASE_URL = os.environ["DATABASE_URL"]
 
 def load_returns():
     conn = psycopg2.connect(DATABASE_URL)
-    query = "SELECT symbol, trade_date, daily_return FROM daily_returns ORDER BY trade_date;"
+    # Trailing window, stocks only (the SPY benchmark is excluded)
+    query = """
+        SELECT tr.symbol, tr.trade_date, tr.r AS daily_return
+        FROM trailing_returns tr
+        JOIN watchlist w USING (symbol)
+        WHERE NOT w.is_benchmark
+        ORDER BY tr.trade_date;
+    """
     df = pd.read_sql(query, conn)
     conn.close()
     return df
@@ -57,7 +64,8 @@ def plot_cumulative_returns(df):
     ax.axhline(0, color="black", linewidth=0.8, linestyle="--")
     ax.set_xlabel("Date")
     ax.set_ylabel("Cumulative Return (%)")
-    ax.set_title("Cumulative Returns — 20-Stock Watchlist (Jul 2025–Jul 2026)", fontsize=13, fontweight="bold")
+    start, end = pd.to_datetime(cumulative.index.min()), pd.to_datetime(cumulative.index.max())
+    ax.set_title(f"Cumulative Returns — 20-Stock Watchlist ({start:%b %Y}–{end:%b %Y})", fontsize=13, fontweight="bold")
     ax.legend(loc="upper left")
     ax.grid(True, alpha=0.3)
     plt.xticks(rotation=45)

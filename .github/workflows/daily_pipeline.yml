@@ -25,25 +25,33 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Pull latest prices (incremental)
+      # ON_ERROR_STOP makes a SQL error fail the job instead of being printed and skipped
+      - name: Create / migrate schema
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -q -f sql/schema.sql
+
+      - name: Refresh prices (full lookback window)
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: python ingest_watchlist_yfinance.py
 
-      - name: Recompute risk metrics (SQL)
+      - name: Recompute risk metrics, VaR forecasts and backtest (SQL)
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
-          psql "$DATABASE_URL" -f sql/schema.sql
-          psql "$DATABASE_URL" -f sql/risk_metrics_query.sql > sql_output.txt
+          psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -q -f sql/metrics.sql
+          psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f sql/risk_metrics_query.sql
 
       - name: Generate daily snapshot + regenerate visuals
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: python scripts/daily_snapshot.py
+        run: |
+          python scripts/daily_snapshot.py
+          python analysis/generate_visuals.py
 
       - name: Commit updated charts and snapshot
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Automated daily update: prices, metrics, and charts"
-          file_pattern: 'visuals/*.png SNAPSHOT.md data_summary.csv anomaly_history.csv'
+          file_pattern: 'visuals/*.png SNAPSHOT.md data_summary.csv anomaly_history.csv var_backtest.csv'

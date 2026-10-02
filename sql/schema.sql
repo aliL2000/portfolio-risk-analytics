@@ -1,14 +1,20 @@
 -- Portfolio Risk & Anomaly Monitoring Pipeline — PostgreSQL Schema
 -- Works on any free Postgres host (Neon, Supabase, local Postgres via Docker).
--- Run once to set up tables before the first pipeline execution.
+-- Idempotent: safe to re-run on every pipeline execution. Metric computation
+-- lives in sql/metrics.sql.
+
+SET client_min_messages = warning;
 
 CREATE TABLE IF NOT EXISTS watchlist (
     symbol VARCHAR(10) PRIMARY KEY,
     company_name VARCHAR(100),
     sector VARCHAR(50),
     market_cap_at_selection NUMERIC(20,2),
-    date_added DATE
+    date_added DATE,
+    is_benchmark BOOLEAN NOT NULL DEFAULT FALSE
 );
+-- Migration for databases created before the benchmark column existed
+ALTER TABLE watchlist ADD COLUMN IF NOT EXISTS is_benchmark BOOLEAN NOT NULL DEFAULT FALSE;
 
 CREATE TABLE IF NOT EXISTS daily_prices (
     symbol VARCHAR(10),
@@ -19,6 +25,18 @@ CREATE TABLE IF NOT EXISTS daily_prices (
     PRIMARY KEY (symbol, trade_date),
     FOREIGN KEY (symbol) REFERENCES watchlist(symbol)
 );
+
+-- Data-quality guard. Postgres NUMERIC accepts 'NaN', and NaN compares greater
+-- than every number, so a single NaN close from yfinance silently poisons every
+-- AVG/STDDEV for that symbol and floats it to the top of any DESC ranking.
+DELETE FROM daily_prices WHERE close_price = 'NaN' OR close_price <= 0;
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'daily_prices_close_valid') THEN
+        ALTER TABLE daily_prices ADD CONSTRAINT daily_prices_close_valid
+            CHECK (close_price <> 'NaN' AND close_price > 0);
+    END IF;
+END $$;
 
 CREATE TABLE IF NOT EXISTS daily_returns (
     symbol VARCHAR(10),
@@ -35,6 +53,21 @@ CREATE TABLE IF NOT EXISTS computed_metrics (
     z_score NUMERIC(10,4),
     is_anomalous BOOLEAN,
     PRIMARY KEY (symbol, trade_date)
+);
+ALTER TABLE computed_metrics ADD COLUMN IF NOT EXISTS ewma_vol DOUBLE PRECISION;
+ALTER TABLE computed_metrics ADD COLUMN IF NOT EXISTS rolling_beta_60d DOUBLE PRECISION;
+
+-- One row per (symbol, day, method, confidence): the 1-day VaR forecast made at
+-- the previous close, and whether the realized return breached it.
+CREATE TABLE IF NOT EXISTS var_forecasts (
+    symbol VARCHAR(10),
+    trade_date DATE,
+    method VARCHAR(20),          -- 'historical' | 'ewma_normal'
+    confidence NUMERIC(4,3),     -- 0.95 | 0.99
+    var_1d DOUBLE PRECISION,     -- positive number = loss, as a fraction of value
+    actual_return DOUBLE PRECISION,
+    is_exception BOOLEAN,
+    PRIMARY KEY (symbol, trade_date, method, confidence)
 );
 
 CREATE TABLE IF NOT EXISTS ingestion_log (
@@ -71,56 +104,7 @@ INSERT INTO watchlist (symbol, company_name, sector, market_cap_at_selection, da
     ('GE','GE Aerospace','Industrials',375375921051,CURRENT_DATE)
 ON CONFLICT (symbol) DO NOTHING;
 
--- Step 1: compute daily returns from raw prices
-INSERT INTO daily_returns (symbol, trade_date, daily_return)
-SELECT
-    symbol,
-    trade_date,
-    close_price / LAG(close_price) OVER (PARTITION BY symbol ORDER BY trade_date) - 1 AS daily_return
-FROM daily_prices
-ON CONFLICT (symbol, trade_date) DO UPDATE SET daily_return = EXCLUDED.daily_return;
-
--- Step 2: rolling 20-day volatility, return, and z-score anomaly flag
--- Postgres supports STDDEV / STDDEV_SAMP as a window function natively
-INSERT INTO computed_metrics (symbol, trade_date, rolling_vol_20d, rolling_return_20d, z_score, is_anomalous)
-SELECT
-    symbol,
-    trade_date,
-    rolling_std * SQRT(252) AS rolling_vol_20d,
-    rolling_avg AS rolling_return_20d,
-    CASE WHEN rolling_std = 0 OR rolling_std IS NULL THEN NULL
-         ELSE (daily_return - rolling_avg) / rolling_std END AS z_score,
-    CASE WHEN rolling_std = 0 OR rolling_std IS NULL THEN FALSE
-         ELSE ABS((daily_return - rolling_avg) / rolling_std) > 2 END AS is_anomalous
-FROM (
-    SELECT
-        symbol,
-        trade_date,
-        daily_return,
-        STDDEV_SAMP(daily_return) OVER (
-            PARTITION BY symbol ORDER BY trade_date
-            ROWS BETWEEN 19 PRECEDING AND CURRENT ROW
-        ) AS rolling_std,
-        AVG(daily_return) OVER (
-            PARTITION BY symbol ORDER BY trade_date
-            ROWS BETWEEN 19 PRECEDING AND CURRENT ROW
-        ) AS rolling_avg
-    FROM daily_returns
-    WHERE daily_return IS NOT NULL
-) sub
-ON CONFLICT (symbol, trade_date) DO UPDATE SET
-    rolling_vol_20d = EXCLUDED.rolling_vol_20d,
-    rolling_return_20d = EXCLUDED.rolling_return_20d,
-    z_score = EXCLUDED.z_score,
-    is_anomalous = EXCLUDED.is_anomalous;
-
--- Portfolio-level summary query — this is the one you'd screenshot for PowerBI
-SELECT
-    dr.symbol,
-    ROUND(AVG(dr.daily_return) * 252 * 100, 2) AS annualized_return_pct,
-    ROUND(STDDEV_SAMP(dr.daily_return) * SQRT(252) * 100, 2) AS annualized_vol_pct,
-    ROUND(SUM(CASE WHEN cm.is_anomalous THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 1) AS pct_anomalous_days
-FROM daily_returns dr
-JOIN computed_metrics cm USING (symbol, trade_date)
-GROUP BY dr.symbol
-ORDER BY annualized_vol_pct DESC;
+-- Market benchmark for beta. Tracked like any other symbol but excluded from rankings.
+INSERT INTO watchlist (symbol, company_name, sector, market_cap_at_selection, date_added, is_benchmark) VALUES
+    ('SPY','SPDR S&P 500 ETF Trust','Benchmark',NULL,CURRENT_DATE,TRUE)
+ON CONFLICT (symbol) DO UPDATE SET is_benchmark = TRUE;
