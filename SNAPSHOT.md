@@ -1,7 +1,7 @@
-# Daily Risk Snapshot — 2026-09-30
+# Daily Risk Snapshot — 2026-10-01
 
-**Best mover:** INTC (+3.71%)
-**Worst mover:** WMT (-2.70%)
+**Best mover:** NVDA (+1.09%)
+**Worst mover:** JNJ (-2.30%)
 **Top risk-adjusted performer (trailing window):** AAPL (Sharpe nan)
 
 **No new anomaly flags today.**
