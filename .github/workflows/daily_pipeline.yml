@@ -8,7 +8,12 @@ on:
   workflow_dispatch: {}
 
 jobs:
+  # Same test suite as on every push; if a metric is broken, nothing is published
+  tests:
+    uses: ./.github/workflows/ci.yml
+
   update-pipeline:
+    needs: tests
     runs-on: ubuntu-latest
     permissions:
       contents: write   # needed so the workflow can commit updated charts back to the repo

@@ -1,6 +1,7 @@
 # Portfolio Risk & Anomaly Monitoring Pipeline
 
 ![Daily Pipeline](https://github.com/aliL2000/portfolio-risk-analytics/actions/workflows/daily_pipeline.yml/badge.svg)
+![Tests](https://github.com/aliL2000/portfolio-risk-analytics/actions/workflows/ci.yml/badge.svg)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Python](https://img.shields.io/badge/python-3.11-blue.svg)
 
@@ -117,8 +118,9 @@ reproducible and comparable over time. It is not the top 20 by market cap.
 
 All metrics beyond raw ingestion are computed in SQL (window functions, ordered-set
 aggregates, `LATERAL` joins, a recursive CTE), not pandas — a deliberate choice to
-demonstrate SQL-native analytics. Every SQL metric is cross-checked against an
-independent pandas/numpy implementation and matches to floating-point precision.
+demonstrate SQL-native analytics. Every SQL metric is
+[cross-checked against an independent pandas/NumPy implementation](tests/test_metrics_crosscheck.py)
+on every push (see [Testing](#testing)).
 
 ## Findings (trailing year to 14 Jul 2026)
 
@@ -190,6 +192,50 @@ Out-of-sample backtest from Oct 2024 to Jul 2026: 445 trading days per stock,
 
 Breaches cluster across names on market-wide sell-off days, so the pooled counts
 are descriptive. The Kupiec test is applied per stock, where it is valid.
+
+## Testing
+
+[`tests/test_metrics_crosscheck.py`](tests/test_metrics_crosscheck.py) loads
+`sql/schema.sql` into a throwaway database, inserts a seeded synthetic price set
+(3 stocks + SPY over 400 trading days, with fat-tailed noise so VaR breaches and
+anomalies actually occur), runs `sql/metrics.sql`, and recomputes every metric
+independently in pandas/NumPy:
+
+| Checked | Reference implementation |
+|---|---|
+| Daily returns | `price / price.shift(1) - 1` |
+| 20-day rolling vol | `rolling(20).std() × √252` |
+| Anomaly z-score and flag | mean/std of the **prior** 20 days (`shift(1).rolling(20)`) |
+| EWMA volatility | the λ = 0.94 recursion, seeded with the first 20 returns' variance |
+| 60-day beta | `rolling(60).cov(SPY) / SPY.rolling(60).var()` |
+| Historical VaR / CVaR | `np.percentile` (linear interpolation, matching `PERCENTILE_CONT`) |
+| EWMA VaR forecasts, breach flags | `z × σ` from the previous close |
+| Kupiec LR | the closed-form formula, from independently counted breaches |
+
+Values are compared with `numpy.isclose`. Doubles use `rtol=1e-9`. Values stored as
+`NUMERIC` use half a unit of their stored precision: 5×10⁻⁷ for returns and vol,
+5×10⁻⁵ for the z-score. Some tests also assert that the plausible *wrong* answer
+does **not** match: the z-score window including today, and `PERCENTILE_DISC`
+instead of `PERCENTILE_CONT`. Without that, a pass couldn't tell the two apart.
+Edge cases cover the September 2026 NaN bug (a `NaN`, zero or negative close must
+violate the `CHECK` constraint) and a Kupiec test with zero breaches, where the
+formula contains `0 · ln 0` and must reduce to `−2T·ln(1−p)` rather than NULL.
+
+CI ([`ci.yml`](.github/workflows/ci.yml)) runs the suite on every push and pull
+request against a `postgres:16` service container. The daily pipeline runs it
+first, so a broken metric can't publish a snapshot.
+
+Run locally:
+
+```bash
+pip install -r requirements-dev.txt
+export TEST_DATABASE_URL="postgresql://..."   # any Postgres you can write to
+pytest
+```
+
+The tests create and then drop their own uniquely named Postgres schema, so they
+never touch existing tables. With no Postgres at hand, `pip install pgserver` and
+leave `TEST_DATABASE_URL` unset: the tests start a temporary local Postgres.
 
 ## Setup
 

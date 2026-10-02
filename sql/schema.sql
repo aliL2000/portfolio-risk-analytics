@@ -32,7 +32,9 @@ CREATE TABLE IF NOT EXISTS daily_prices (
 DELETE FROM daily_prices WHERE close_price = 'NaN' OR close_price <= 0;
 DO $$
 BEGIN
-    IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'daily_prices_close_valid') THEN
+    IF NOT EXISTS (SELECT 1 FROM pg_constraint
+                   WHERE conname = 'daily_prices_close_valid'
+                     AND conrelid = 'daily_prices'::regclass) THEN
         ALTER TABLE daily_prices ADD CONSTRAINT daily_prices_close_valid
             CHECK (close_price <> 'NaN' AND close_price > 0);
     END IF;
