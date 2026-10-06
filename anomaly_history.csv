@@ -1,7 +1,4 @@
 trade_date,symbol,event
-2023-11-02,BAC,newly_flagged
-2023-11-02,TSLA,newly_flagged
-2023-11-02,XOM,newly_flagged
 2023-11-09,CSCO,newly_flagged
 2023-11-10,COST,newly_flagged
 2023-11-14,BAC,newly_flagged
@@ -994,3 +991,4 @@ trade_date,symbol,event
 2026-09-29,AAPL,newly_flagged
 2026-09-30,WMT,newly_flagged
 2026-10-01,JNJ,newly_flagged
+2026-10-05,V,newly_flagged
