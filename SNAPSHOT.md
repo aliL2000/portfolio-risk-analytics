@@ -1,11 +1,11 @@
-# Daily Risk Snapshot — 2026-10-05
+# Daily Risk Snapshot — 2026-10-06
 
-**Best mover:** V (+2.51%)
-**Worst mover:** INTC (-2.63%)
-**Top risk-adjusted performer (trailing 252 days):** AMD (Sharpe 2.11)
+**Best mover:** CSCO (+4.54%)
+**Worst mover:** INTC (-3.18%)
+**Top risk-adjusted performer (trailing 252 days):** AMD (Sharpe 2.19)
 **Highest tail risk:** INTC (1-day 99% historical VaR 9.34%, CVaR 12.66%)
 
-**⚠ Newly anomalous today:** V — return moved more than 2 std. deviations from its prior 20-day mean.
+**⚠ Newly anomalous today:** CSCO — return moved more than 2 std. deviations from its prior 20-day mean.
 **No 99% VaR breaches today.**
 
 ## VaR model backtest (99%, all symbols)
