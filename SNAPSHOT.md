@@ -1,11 +1,11 @@
-# Daily Risk Snapshot — 2026-10-07
+# Daily Risk Snapshot — 2026-10-08
 
-**Best mover:** ABBV (+1.75%)
-**Worst mover:** META (-2.38%)
-**Top risk-adjusted performer (trailing 252 days):** AMD (Sharpe 1.96)
+**Best mover:** XOM (+2.71%)
+**Worst mover:** INTC (-5.34%)
+**Top risk-adjusted performer (trailing 252 days):** AMD (Sharpe 1.84)
 **Highest tail risk:** INTC (1-day 99% historical VaR 9.34%, CVaR 12.66%)
 
-**⚠ Newly anomalous today:** JNJ — return moved more than 2 std. deviations from its prior 20-day mean.
+**⚠ Newly anomalous today:** NVDA — return moved more than 2 std. deviations from its prior 20-day mean.
 **No 99% VaR breaches today.**
 
 ## VaR model backtest (99%, all symbols)

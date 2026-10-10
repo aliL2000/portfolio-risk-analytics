@@ -4,6 +4,7 @@ trade_date,symbol,event
 2023-11-14,BAC,newly_flagged
 2023-11-16,COST,newly_flagged
 2023-11-16,CSCO,newly_flagged
+2023-11-16,INTC,newly_flagged
 2023-11-16,WMT,newly_flagged
 2023-11-17,XOM,newly_flagged
 2023-11-29,GOOGL,newly_flagged
@@ -994,3 +995,4 @@ trade_date,symbol,event
 2026-10-05,V,newly_flagged
 2026-10-06,CSCO,newly_flagged
 2026-10-07,JNJ,newly_flagged
+2026-10-08,NVDA,newly_flagged
