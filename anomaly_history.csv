@@ -1,8 +1,4 @@
 trade_date,symbol,event
-2023-11-16,COST,newly_flagged
-2023-11-16,CSCO,newly_flagged
-2023-11-16,WMT,newly_flagged
-2023-11-17,XOM,newly_flagged
 2023-11-29,GOOGL,newly_flagged
 2023-11-29,META,newly_flagged
 2023-11-30,ABBV,newly_flagged
