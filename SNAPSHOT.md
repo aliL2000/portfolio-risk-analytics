@@ -1,11 +1,11 @@
-# Daily Risk Snapshot — 2026-10-16
+# Daily Risk Snapshot — 2026-10-19
 
-**Best mover:** XOM (+2.46%)
-**Worst mover:** AMD (-5.95%)
-**Top risk-adjusted performer (trailing 252 days):** XOM (Sharpe 1.90)
+**Best mover:** AMZN (+4.98%)
+**Worst mover:** JPM (-1.82%)
+**Top risk-adjusted performer (trailing 252 days):** XOM (Sharpe 1.92)
 **Highest tail risk:** INTC (1-day 99% historical VaR 9.34%, CVaR 12.66%)
 
-**No new anomaly flags today.**
+**⚠ Newly anomalous today:** AMZN — return moved more than 2 std. deviations from its prior 20-day mean.
 **No 99% VaR breaches today.**
 
 ## VaR model backtest (99%, all symbols)
