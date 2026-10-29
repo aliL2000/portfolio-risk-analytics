@@ -1,11 +1,11 @@
-# Daily Risk Snapshot — 2026-10-26
+# Daily Risk Snapshot — 2026-10-27
 
-**Best mover:** TSLA (+5.21%)
-**Worst mover:** META (-1.88%)
-**Top risk-adjusted performer (trailing 252 days):** XOM (Sharpe 1.87)
+**Best mover:** AMD (+5.45%)
+**Worst mover:** XOM (-2.51%)
+**Top risk-adjusted performer (trailing 252 days):** XOM (Sharpe 1.78)
 **Highest tail risk:** INTC (1-day 99% historical VaR 9.34%, CVaR 12.66%)
 
-**⚠ Newly anomalous today:** TSLA — return moved more than 2 std. deviations from its prior 20-day mean.
+**⚠ Newly anomalous today:** GE, XOM — return moved more than 2 std. deviations from its prior 20-day mean.
 **No 99% VaR breaches today.**
 
 ## VaR model backtest (99%, all symbols)
