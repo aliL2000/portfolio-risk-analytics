@@ -1,7 +1,6 @@
 trade_date,symbol,event
-2023-11-29,GOOGL,newly_flagged
-2023-11-29,META,newly_flagged
 2023-11-30,ABBV,newly_flagged
+2023-11-30,GOOGL,newly_flagged
 2023-11-30,JNJ,newly_flagged
 2023-11-30,NVDA,newly_flagged
 2023-11-30,UNH,newly_flagged
