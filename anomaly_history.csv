@@ -1,9 +1,5 @@
 trade_date,symbol,event
-2023-11-30,ABBV,newly_flagged
-2023-11-30,GOOGL,newly_flagged
-2023-11-30,JNJ,newly_flagged
-2023-11-30,NVDA,newly_flagged
-2023-11-30,UNH,newly_flagged
+2023-12-01,JNJ,newly_flagged
 2023-12-06,JPM,newly_flagged
 2023-12-07,AMD,newly_flagged
 2023-12-07,GOOGL,newly_flagged
@@ -1011,3 +1007,6 @@ trade_date,symbol,event
 2026-10-26,TSLA,newly_flagged
 2026-10-27,GE,newly_flagged
 2026-10-27,XOM,newly_flagged
+2026-10-29,AMZN,newly_flagged
+2026-10-29,GE,newly_flagged
+2026-10-29,GOOGL,newly_flagged
