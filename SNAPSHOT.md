@@ -1,12 +1,12 @@
-# Daily Risk Snapshot — 2026-11-02
+# Daily Risk Snapshot — 2026-11-03
 
-**Best mover:** GE (+4.63%)
-**Worst mover:** INTC (-8.80%)
-**Top risk-adjusted performer (trailing 252 days):** XOM (Sharpe 1.78)
+**Best mover:** AMD (+3.65%)
+**Worst mover:** WMT (-2.22%)
+**Top risk-adjusted performer (trailing 252 days):** XOM (Sharpe 1.74)
 **Highest tail risk:** INTC (1-day 99% historical VaR 10.46%, CVaR 18.96%)
 
-**⚠ Newly anomalous today:** AAPL, ABBV, COST, MSFT, XOM — return moved more than 2 std. deviations from its prior 20-day mean.
-**99% VaR breaches today:** XOM (ewma_normal: -4.05% vs VaR 3.53%)
+**⚠ Newly anomalous today:** WMT — return moved more than 2 std. deviations from its prior 20-day mean.
+**No 99% VaR breaches today.**
 
 ## VaR model backtest (99%, all symbols)
 
