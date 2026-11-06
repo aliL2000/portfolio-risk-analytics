@@ -1,5 +1,4 @@
 trade_date,symbol,event
-2023-12-06,JPM,newly_flagged
 2023-12-07,AMD,newly_flagged
 2023-12-07,GOOGL,newly_flagged
 2023-12-07,META,newly_flagged
@@ -1019,3 +1018,9 @@ trade_date,symbol,event
 2026-11-02,MSFT,newly_flagged
 2026-11-02,XOM,newly_flagged
 2026-11-03,WMT,newly_flagged
+2026-11-04,AAPL,newly_flagged
+2026-11-04,AMZN,newly_flagged
+2026-11-04,BAC,newly_flagged
+2026-11-04,JPM,newly_flagged
+2026-11-04,V,newly_flagged
+2026-11-04,XOM,newly_flagged
