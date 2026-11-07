@@ -1,7 +1,4 @@
 trade_date,symbol,event
-2023-12-07,AMD,newly_flagged
-2023-12-07,GOOGL,newly_flagged
-2023-12-07,META,newly_flagged
 2023-12-12,V,newly_flagged
 2023-12-13,BAC,newly_flagged
 2023-12-14,COST,newly_flagged
@@ -1024,3 +1021,9 @@ trade_date,symbol,event
 2026-11-04,JPM,newly_flagged
 2026-11-04,V,newly_flagged
 2026-11-04,XOM,newly_flagged
+2026-11-05,AMD,newly_flagged
+2026-11-05,CSCO,newly_flagged
+2026-11-05,GE,newly_flagged
+2026-11-05,NVDA,newly_flagged
+2026-11-05,TSLA,newly_flagged
+2026-11-05,UNH,newly_flagged
