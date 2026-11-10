@@ -1,5 +1,4 @@
 trade_date,symbol,event
-2023-12-12,V,newly_flagged
 2023-12-13,BAC,newly_flagged
 2023-12-14,COST,newly_flagged
 2023-12-14,JPM,newly_flagged
@@ -1027,3 +1026,5 @@ trade_date,symbol,event
 2026-11-05,NVDA,newly_flagged
 2026-11-05,TSLA,newly_flagged
 2026-11-05,UNH,newly_flagged
+2026-11-09,CSCO,newly_flagged
+2026-11-09,META,newly_flagged
