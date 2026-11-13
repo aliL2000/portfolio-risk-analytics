@@ -1,12 +1,12 @@
-# Daily Risk Snapshot — 2026-11-10
+# Daily Risk Snapshot — 2026-11-11
 
-**Best mover:** UNH (+1.89%)
-**Worst mover:** NVDA (-5.47%)
-**Top risk-adjusted performer (trailing 252 days):** JNJ (Sharpe 1.95)
+**Best mover:** INTC (+7.52%)
+**Worst mover:** MSFT (-2.26%)
+**Top risk-adjusted performer (trailing 252 days):** JNJ (Sharpe 1.90)
 **Highest tail risk:** AMD (1-day 99% historical VaR 10.87%, CVaR 15.15%)
 
 **No new anomaly flags today.**
-**99% VaR breaches today:** NVDA (historical: -5.47% vs VaR 5.23%)
+**No 99% VaR breaches today.**
 
 ## VaR model backtest (99%, all symbols)
 
