@@ -1,11 +1,11 @@
-# Daily Risk Snapshot — 2026-11-11
+# Daily Risk Snapshot — 2026-11-13
 
-**Best mover:** INTC (+7.52%)
-**Worst mover:** MSFT (-2.26%)
-**Top risk-adjusted performer (trailing 252 days):** JNJ (Sharpe 1.90)
+**Best mover:** WMT (+1.51%)
+**Worst mover:** AMD (-8.75%)
+**Top risk-adjusted performer (trailing 252 days):** JNJ (Sharpe 1.85)
 **Highest tail risk:** AMD (1-day 99% historical VaR 10.87%, CVaR 15.15%)
 
-**No new anomaly flags today.**
+**⚠ Newly anomalous today:** CSCO — return moved more than 2 std. deviations from its prior 20-day mean.
 **No 99% VaR breaches today.**
 
 ## VaR model backtest (99%, all symbols)
