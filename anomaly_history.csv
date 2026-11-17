@@ -1,6 +1,4 @@
 trade_date,symbol,event
-2023-12-15,COST,newly_flagged
-2023-12-18,AMZN,newly_flagged
 2023-12-20,ABBV,newly_flagged
 2023-12-20,COST,newly_flagged
 2023-12-20,GE,newly_flagged
