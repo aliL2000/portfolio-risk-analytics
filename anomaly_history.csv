@@ -1,5 +1,4 @@
 trade_date,symbol,event
-2023-12-21,GE,newly_flagged
 2023-12-26,INTC,newly_flagged
 2024-01-02,AAPL,newly_flagged
 2024-01-02,ABBV,newly_flagged
@@ -1015,3 +1014,6 @@ trade_date,symbol,event
 2026-11-09,META,newly_flagged
 2026-11-13,CSCO,newly_flagged
 2026-11-17,UNH,newly_flagged
+2026-11-20,META,newly_flagged
+2026-11-20,NVDA,newly_flagged
+2026-11-20,TSLA,newly_flagged
